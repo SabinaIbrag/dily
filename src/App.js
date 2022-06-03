@@ -14,9 +14,10 @@ import Confirm from "./pages/Auth/Confirm/Confirm";
 import Register from "./pages/Auth/Register/Register";
 import Login from "./pages/Auth/Login/Login";
 import Accessories from "./pages/Accessories/Accessories";
-import Service from "./pages/Service/Service";
+import Problem from "./pages/Service/Problem/Problem";
 import Internet from "./pages/Internet/Internet";
 import Buying from "./pages/Buying/Buying";
+import Service from "./pages/Service/Service";
 
 
 function App() {
