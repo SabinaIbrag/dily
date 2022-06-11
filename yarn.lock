@@ -2,6 +2,21 @@
 # yarn lockfile v1
 
 
+"2gis@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/2gis/-/2gis-0.0.2.tgz#64cbc8bda705d3f60f6a01fcbd596a401fea1e10"
+  integrity sha512-4VBoUkre9+WW3YIzlNzLC/nwKImOsjS6lKAku2fWzkAuT4494IMan/w9TOGHcdQnwG0fjDhE0rFVjq3vqL1gyg==
+  dependencies:
+    request "~2.2.9"
+    waitress ">=0.0.2"
+
+"@2gis/mapgl@^1.28.0":
+  version "1.28.0"
+  resolved "https://registry.yarnpkg.com/@2gis/mapgl/-/mapgl-1.28.0.tgz#31576b64f73c2379c2fe0ad8b40879352007f2f6"
+  integrity sha512-FdhNnL1djcN/nCdylwDn87hyJeOk7vMZaupA2UqUsPaV7hwjMaLAVcEjWUFXlh3nNgVXMQw5WKm63ftBpE/rjg==
+  dependencies:
+    "@types/geojson" "^7946.0.7"
+
 "@ampproject/remapping@^2.1.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.2.0.tgz#56c133824780de3174aed5ab6834f3026790154d"
@@ -2295,6 +2310,11 @@
     "@types/express-serve-static-core" "^4.17.18"
     "@types/qs" "*"
     "@types/serve-static" "*"
+
+"@types/geojson@^7946.0.7":
+  version "7946.0.8"
+  resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.8.tgz#30744afdb385e2945e22f3b033f897f76b1f12ca"
+  integrity sha512-1rkryxURpr6aWP7R786/UQOkJ3PcpQiWkAXBmdWc7ryFWqN6a4xfK7BtjXvFBKO9LjQ+MWQSWxYeZX1OApnArA==
 
 "@types/graceful-fs@^4.1.2":
   version "4.1.5"
@@ -8057,6 +8077,11 @@ renderkid@^3.0.0:
     lodash "^4.17.21"
     strip-ansi "^6.0.1"
 
+request@~2.2.9:
+  version "2.2.9"
+  resolved "https://registry.yarnpkg.com/request/-/request-2.2.9.tgz#efbf8afbfe7f1e200d483b99752b6c42b404a0f1"
+  integrity sha512-ghe0epdhsogU/laqPTcWw+bS/fJ1cW6IDFXhDCr3VV42GDyMJdW8c2l+taYxLu+vuAHGh043IpypZIq/3jqEyQ==
+
 require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
@@ -9159,6 +9184,11 @@ w3c-xmlserializer@^2.0.0:
   integrity sha512-4tzD0mF8iSiMiNs30BiLO3EpfGLZUT2MSX/G+o7ZywDzliWQ3OPtTZ0PTC3B3ca1UAf4cJMHB+2Bf56EriJuRA==
   dependencies:
     xml-name-validator "^3.0.0"
+
+waitress@>=0.0.2:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/waitress/-/waitress-0.1.5.tgz#ed9b2a237cccd83cd735472f44f6c47b7e653af6"
+  integrity sha1-7ZsqI3zM2DzXNUcvRPbEe35lOvY=
 
 walker@^1.0.7:
   version "1.0.8"

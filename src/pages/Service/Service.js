@@ -1,13 +1,15 @@
 import React from 'react';
-import Problem from "./Problem/Problem";
-import Fast from "./Fast/Fast";
+import ServiceBanner from "./Banner/ServiceBanner";
+import Advantage from "./Advantage/Advantage";
 
 const Service = () => {
     return (
-        <main>
-            <Problem/>
-            <Fast/>
-        </main>
+        <div className={'service'}>
+            <ServiceBanner/>
+
+            <Advantage/>
+
+        </div>
     );
 };
 

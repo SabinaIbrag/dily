@@ -1,12 +1,15 @@
-import React, {useContext} from 'react';
-import {Link, NavLink} from "react-router-dom"
+import React from 'react';
+import {Link, useNavigate} from "react-router-dom"
 import {useForm} from "react-hook-form";
-
+import { signInWithEmailAndPassword  } from "firebase/auth";
+import {auth} from "../../../firebase/firebase";
+import {findUser} from "../../../redux/reducers/user";
+import {useDispatch} from "react-redux";
 
 
 const Login = () => {
-
-
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const {
         register,
@@ -17,12 +20,32 @@ const Login = () => {
         reset
     } = useForm();
 
+    const loginUser = (data) =>{
+        signInWithEmailAndPassword (auth, data.email, data.password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                user.phoneNumber = data.phone;
+                user.displayName = data.login;
+
+                // console.log(userCredential);
+                dispatch(findUser( {user} ));
+                localStorage.setItem('user', JSON.stringify(user));
+                reset();
+                navigate('/')
+            })
+            .catch((error) => {
+                console.log(`bad request ${error}`)
+            });
+    };
+
 
 
     return (
         <section className='login'>
             <div className='auth__left'>
-                <h2 className='auth__title'><svg width="150" height="63" viewBox="0 0 150 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <h2 className='auth__title'>
+                    <svg width="150" height="63" viewBox="0 0 150 63" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.5 18.2429H15.1677V51.7099H21.4728C35.6206 51.7099 42.6918 44.836 42.6863 31.088C42.6863 17.621 36.1212 10.8899 22.991 10.8949H20.3423V0L22.2361 0C33.53 0 42.3046 2.71016 48.56 8.13049C54.8153 13.5508 57.9402 21.0974 57.9347 30.7702C57.9347 41.0688 54.6964 48.953 48.2198 54.4226C41.7432 59.8922 32.3685 62.6442 20.0957 62.6787H0.5V18.2429Z" fill="white"/>
                     <path d="M15.176 0H0.5V13.0753H15.176V0Z" fill="white"/>
                     <path d="M71.9651 26.3898H66.9361V44.6177H71.9651V26.3898ZM72.3282 21.1975C72.3282 20.3623 72.0559 19.6724 71.5294 19.1641C70.9847 18.6557 70.2585 18.4016 69.3508 18.4016C68.5156 18.4016 67.8439 18.6557 67.3355 19.1641C66.8272 19.6724 66.573 20.3623 66.573 21.1975C66.573 22.0326 66.809 22.7043 67.3174 23.2127C67.8257 23.721 68.4975 23.9752 69.3508 23.9752C70.2585 23.9752 70.9847 23.721 71.5294 23.2127C72.0559 22.7043 72.3282 22.0326 72.3282 21.1975ZM82.2047 18.5831H77.1757V44.6177H82.2047V18.5831ZM91.5001 45.7251C90.901 47.1049 89.848 47.7767 88.3411 47.7767C87.5968 47.7767 86.9795 47.6678 86.4893 47.4136V51.8616L86.8524 51.9887C87.1066 52.0976 87.4878 52.1884 88.0325 52.2792C88.559 52.3881 89.1036 52.4244 89.6483 52.4244C92.6984 52.4244 95.0404 50.1913 96.7107 45.7251L103.955 26.3898H98.7622L94.4776 38.4812L90.2111 26.3898H85.0006L92.0629 44.4361L91.5001 45.7251ZM103.737 42.203C103.737 42.9474 104.027 43.601 104.608 44.1456C105.189 44.7085 105.879 44.9808 106.714 44.9808C107.531 44.9808 108.239 44.7085 108.82 44.1456C109.401 43.601 109.692 42.9474 109.692 42.203C109.692 41.4587 109.401 40.8051 108.82 40.2423C108.239 39.6976 107.531 39.4071 106.714 39.4071C105.879 39.4071 105.189 39.6976 104.608 40.2423C104.027 40.8051 103.737 41.4587 103.737 42.203ZM124.561 26.2083H123.816C122.818 26.2083 121.874 26.4443 120.966 26.88C120.058 27.3339 119.477 27.697 119.205 27.9693C118.951 28.2417 118.733 28.4595 118.588 28.6229V26.3898H113.577V44.6177H118.588V35.885C118.588 34.3237 118.987 33.1254 119.75 32.2903C120.512 31.4551 121.565 31.0376 122.872 31.0376C123.617 31.0557 124.18 31.1284 124.543 31.2554L124.561 26.2083ZM139.63 44.6177H144.64V26.3898H139.63V36.0666C139.63 37.4464 139.285 38.4994 138.613 39.2256C137.941 39.9699 137.033 40.333 135.908 40.333C134.891 40.333 134.038 40.0063 133.366 39.3345C132.694 38.6809 132.368 37.8276 132.368 36.8109V26.3898H127.357V37.3011C127.357 39.625 128.01 41.495 129.317 42.8929C130.625 44.2909 132.331 44.9808 134.419 44.9808C135.399 44.9808 136.343 44.7811 137.251 44.3817C138.159 43.9822 138.74 43.6554 139.012 43.4013C139.266 43.1471 139.484 42.9474 139.63 42.7658V44.6177Z" fill="white"/>
@@ -85,7 +108,7 @@ const Login = () => {
 </span> Помогайте нуждающимся </li>
                 </ul>
             </div>
-            <form className='login__form'>
+            <form className='login__form' onSubmit={handleSubmit(loginUser)}>
                 <h2 className='login__title'>Вход в аккаунт</h2>
                 <p className='login__text'>Войдите в свою учетную запись, используя адрес электронной почты и пароль, указанные при регистрации.</p>
                 <label className='login__label' htmlFor="1">Email</label>
